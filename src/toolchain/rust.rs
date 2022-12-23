@@ -175,7 +175,7 @@ impl Installable for XtensaRust {
                 &self.host_triple,
                 self.toolchain_destination.display()
             );
-            cmd!("/bin/bash", "-c", arguments).run()?;
+            cmd!("bash", "-c", arguments).run()?;
 
             download_file(
                 self.src_dist_url.clone(),
@@ -190,7 +190,7 @@ impl Installable for XtensaRust {
                 get_dist_path("rust-src"),
                 self.toolchain_destination.display()
             );
-            cmd!("/usr/bin/env", "bash", "-c", arguments).run()?;
+            cmd!("bash", "-c", arguments).run()?;
         }
         // Some platfroms like Windows are available in single bundle rust + src, because install
         // script in dist is not available for the plaform. It's sufficient to extract the toolchain
@@ -380,7 +380,7 @@ async fn install_rustup(nightly_version: &str, host_triple: &HostTriple) -> Resu
     .run()?;
     #[cfg(not(windows))]
     cmd!(
-        "/bin/bash",
+        "bash",
         rustup_init_path,
         "--default-toolchain",
         nightly_version,
